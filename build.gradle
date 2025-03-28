@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'net.minecraftforge.gradle' version '5.1.+'
+    id 'org.spongepowered.mixin' version '0.7.+'
+}
+
+group = 'potionstudios.lushfarmlandsfix'
+version = '1.0.0'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spongepowered.org/repository/maven-public/' }
+    maven { url 'https://maven.minecraftforge.net' }
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.18.2-40.3.0'
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    compileOnly fg.deobf("net.minecraftforge:forge:1.18.2-40.3.0")
+    compileOnly "org.spongepowered:mixin:0.8.5"
+    compileOnly files("libs/BYG.jar")
+}
+
+jar {
+    manifest {
+        attributes(
+            'Specification-Title': 'Lush Farmlands Fix',
+            'Specification-Vendor': 'Octopirate',
+            'Specification-Version': version,
+            'Implementation-Title': project.name,
+            'Implementation-Version': version,
+            'Implementation-Vendor': 'Octopirate',
+            'Built-On-Java': "${System.getProperty('java.version')}",
+            'Build-On-Minecraft': '1.18.2'
+        )
+    }
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.18.2'
+}
+
+mixin {
+    // MixinGradle Settings
+    add sourceSets.main, 'mixins.lushfarmlandfix.refmap.json'
+    config 'mixins.lushfarmlandfix.json'
+
+    debug.verbose = true
+    debug.export = true
+}

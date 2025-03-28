@@ -1,0 +1,17 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+modId="lushfarmlandfix"
+version="1.0.0"
+displayName="Lush Farmland Fix"
+authors="Octopirate"
+description='A Mixin patch to add extra tillable mappings and event handling to BYG.'
+mainClass="potionstudios.lushfarmlandfix.LushFarmlandFixMod"
+
+[[dependencies.lushfarmlandfix]]
+modId="byg"
+mandatory=true
+versionRange="[1.4,)"
+ordering="AFTER"
